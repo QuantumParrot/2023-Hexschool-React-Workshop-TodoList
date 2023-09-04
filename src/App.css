@@ -1,0 +1,332 @@
+/* * { outline: 1px solid } */
+
+body {
+    font-family: "Noto Sans TC";
+    color: #333333;
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+a {
+    display: block;
+    color: inherit;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
+a:hover, button:hover {
+    opacity: 0.9;
+}
+
+.container-800 {
+    max-width: 800px;
+    height: 100vh;
+    padding:  87px 0;
+    margin: 0 auto;
+}
+
+.container-500 {
+    max-width: 500px;
+    height: 100vh;
+    padding:  87px 0;
+    margin: 0 auto;
+}
+
+/* input */
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input:not([type="checkbox"]) {
+    width: 100%;
+    padding: 12px 16px;
+    border-style: none;
+    border-radius: 10px;
+}
+
+input[type="checkbox"] {
+    width:  20px;
+    height: 20px;
+    vertical-align: text-top;
+    cursor: pointer;
+}
+
+/* button */
+
+.btn {
+    background-color: #333333;
+    color: white;
+    font-weight: bold;
+    border-style:  none;
+    border-radius: 10px;
+}
+
+.btn-add {
+    width:  40px;
+    height: 39px;
+    font-size: 30px;
+}
+
+.btn-submit {
+    padding: 12px 48px;
+}
+
+.btn-delete {
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    color: #CB1B45;
+}
+
+.btn-edit {
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    color: #0474FB;
+}
+
+.btn-mini {
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* background-color */
+
+.bg-yellow {
+    background-color: #FFD370;
+}
+
+.bg-half {
+    background: linear-gradient(175deg, #FFD370 60%, white 40%)
+}
+
+/* flexbox */
+
+.d-flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.g-24 {
+    gap: 24px;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+/* typography */
+
+.text-center {
+    text-align: center;
+}
+
+.text-alert {
+    font-size: 14px;
+    font-weight: bold;
+    color:  #CB1B45;
+}
+
+.text-deleted {
+    color: #9F9A91;
+    text-decoration: line-through;
+}
+
+.material-icons {
+    color: inherit;
+    vertical-align: text-top;
+}
+
+/* margin & padding */
+
+.mt-4 {
+    margin-top: 4px;
+}
+
+.me-4 {
+    margin-right: 4px;
+}
+
+.me-16 {
+    margin-right: 16px;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.mb-24 {
+    margin-bottom: 24px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.mx-24 {
+    margin-right: 24px;
+    margin-left:  24px;
+}
+
+.my-16 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.pt-16 {
+    padding-top:  16px;
+}
+
+.pb-16 {
+    padding-bottom: 16px;
+}
+
+.px-32 {
+    padding-left:  32px;
+    padding-right: 32px;
+}
+
+.py-16 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.py-60 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Auth Page Style */
+
+.main-form {
+    max-width: 36%;
+}
+
+/* TodoList Style */
+
+.create-todo {
+    position: relative;
+}
+
+.create-todo input {
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.create-todo .btn-add {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+
+.todolist {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.todolist-tab {
+    flex-grow: 1;
+    padding: 16px 0;
+    border-bottom: 2px solid #EFEFEF;
+    text-align: center;
+    color: #9F9A91;
+}
+
+.todolist-tab.active {
+    color: #333333;
+    border-bottom: 2px solid #333333;
+}
+
+.todolist-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.todolist-item:hover {
+    background: #E5E5E5;
+}
+
+.todolist-item span {
+    display: inline-block;
+}
+
+.todolist-item label {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+input.todo-edit-input {
+    width: 50%;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #333333;
+}
+
+/* RWD - Auth */
+
+@media (max-width: 835px) {
+    .main {
+        justify-content: space-evenly;
+    }
+    .subtitle {
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .container-800 {
+        padding: 48px 0;
+    }
+    .main {
+        flex-direction: column;
+    }
+    .main-visual {
+        display: none;
+    }
+    .main-form {
+        max-width: 100%;
+    }
+    h2 {
+        font-size: 20px;
+    }
+}
+
+/* RWD - TodoList */
+
+@media (max-width: 445px) {
+    .container-500 {
+        padding: 0 32px 36px 32px;
+    }
+    .username {
+        display: none;
+    }
+    .todolist-header {
+        padding:  16px 32px;
+    }
+}
