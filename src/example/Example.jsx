@@ -102,9 +102,19 @@ const List = (props) => {
     const editTodo = (id) => {
         setTodos(todos.map((item) => item.id === id ?
         {...item, content: newContent} : item));
+        Swal.fire({
+            toast: 'true',
+            icon: 'success',
+            position: 'top-start',
+            text: '更新成功',
+            showConfirmButton: false,
+            timer: 1000
+        })
         setNewContent('');
         setEditMode('');
     }
+
+    const keyDownToUpdate = (e,id) => { e.key === 'Enter' ? editTodo(id) : null }
 
     // 刪除項目
 
@@ -159,8 +169,8 @@ const List = (props) => {
                             <div className="flex-grow-1">
                             <input type="text"
                                    className="todo-edit-input me-4"
-                                   value={newContent}
-                                   onChange={(e)=>setNewContent(e.target.value)}
+                                   value={newContent} onChange={(e)=>setNewContent(e.target.value)}
+                                   onKeyDown={(e)=>keyDownToUpdate(e,item.id)}
                                    />
                             <button className="btn btn-mini me-4" onClick={()=>editTodo(item.id)}>
                                 修改</button>
@@ -225,7 +235,7 @@ function Example() {
         setNewTodo('');
     }
 
-    const handleKeyDown = ({key}) => {
+    const keyDownToCreate = ({key}) => {
         key === 'Enter' ? createTodo() : null
     }
 
@@ -248,11 +258,11 @@ function Example() {
                            style={{height: "47px"}}
                            className="mb-16"
                            value={newTodo}
-                           onKeyDown={handleKeyDown}
                            onChange={(e) => {
                            setMessage('');
                            setNewTodo(e.target.value);
-                           }} />
+                           }}
+                           onKeyDown={keyDownToCreate} />
                     <button className="btn btn-add"
                             onClick={createTodo}>+</button>
                 </div>

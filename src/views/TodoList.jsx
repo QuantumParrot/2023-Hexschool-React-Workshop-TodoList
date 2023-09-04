@@ -21,7 +21,6 @@ const List = ({todos, getTodoList}) => {
 
     const [tab, setTab] = useState('全　部');
     const [filterTodos, setFilterTodos] = useState(todos);
-    const [unfinishedNum, setUnfinishedNum] = useState(todos.filter((todo => !todo.status)).length);
 
     useEffect(()=>{
         setFilterTodos(todos);
@@ -39,12 +38,6 @@ const List = ({todos, getTodoList}) => {
             setFilterTodos(todos.filter((todo) => todo.status));
         }
     },[tab])
-
-    // 每次篩選完清單就重新計算待完成項目
-
-    useEffect(()=>{
-        setUnfinishedNum(todos.filter((todo => !todo.status)).length);
-    },[filterTodos])
 
     const handleList = (e) => {
         setTab(e.target.textContent);
@@ -84,6 +77,8 @@ const List = ({todos, getTodoList}) => {
             console.log(error);
         }
     }
+
+    const keyDownToUpdate = (e,id) => { e.key === 'Enter' ? editTodo(id) : null }
 
     // 刪除待辦事項
 
@@ -151,8 +146,8 @@ const List = ({todos, getTodoList}) => {
                         <div className="flex-grow-1">
                             <input type="text"
                                    className="todo-edit-input me-4"
-                                   value={editContent}
-                                   onChange={(e)=>setEditContent(e.target.value)} />
+                                   value={editContent} onChange={(e)=>setEditContent(e.target.value)}
+                                   onKeyDown={(e)=>keyDownToUpdate(e,item.id)} />
                             <button className="btn btn-mini me-4"
                                     onClick={(e)=>editTodo(item.id)}>
                                     修改</button>
@@ -181,7 +176,7 @@ const List = ({todos, getTodoList}) => {
                 )}
             )}
             <div className="d-flex justify-between mx-24 my-16">
-                <p>{unfinishedNum} 個待完成項目</p>
+                <p>{todos.filter((todo => !todo.status)).length} 個待完成項目</p>
                 <Link onClick={clearFinished}>清除已完成項目</Link>
             </div>
         </div>
@@ -267,7 +262,7 @@ function TodoList() {
 
     // 按 Enter 後送出
 
-    const handleKeyDown = e => {
+    const keyDownToCreate = e => {
         // console.log('User pressed:', e.key); // type: string
         if (e.key === 'Enter') {
             newTodo.content ? createTodo() : setMessage('欄位不可空白')
@@ -289,11 +284,11 @@ function TodoList() {
                            style={{height: "47px"}}
                            className="mb-16"
                            value={newTodo.content}
-                           onKeyDown={handleKeyDown}
                            onChange={(e) => {
                            setMessage('');
                            setNewTodo({ content: e.target.value });
-                           }} />
+                           }}
+                           onKeyDown={keyDownToCreate} />
                     <button className="btn btn-add"
                             onClick={()=>{ newTodo.content ? createTodo() : setMessage('欄位不可空白') }}>+</button>
                 </div>
