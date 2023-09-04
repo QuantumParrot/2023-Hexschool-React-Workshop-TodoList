@@ -19,19 +19,19 @@ const Empty = () => {
 
 const List = ({todos, getTodoList}) => {
 
-    const [tab, setTab] = useState('全部');
+    const [tab, setTab] = useState('全　部');
     const [filterTodos, setFilterTodos] = useState(todos);
     const [unfinishedNum, setUnfinishedNum] = useState(todos.filter((todo => !todo.status)).length);
 
     useEffect(()=>{
         setFilterTodos(todos);
-        setTab('全部');
+        setTab('全　部');
     },[todos])
 
     // 每次切換頁籤時更新篩選完的狀態
 
     useEffect(()=>{
-        if (tab == '全部') {
+        if (tab == '全　部') {
             setFilterTodos(todos);
         } else if (tab == '待完成') {
             setFilterTodos(todos.filter((todo) => !todo.status));
@@ -146,26 +146,30 @@ const List = ({todos, getTodoList}) => {
                            value={Boolean(item.status)}
                            checked={Boolean(item.status)}
                            onChange={()=>statusToggle(item.id)} />
-                    <label htmlFor={item.id}
-                           className="flex-grow-1"
-                           style={{
-                           color: item.status && "#9F9A91",
-                           textDecoration: item.status && "line-through"
-                           }}>
-                    {editMode === item.id ? (
-                        <>
-                        <input type="text"
-                               className="todo-edit-input me-4"
-                               value={editContent}
-                               onChange={(e)=>setEditContent(e.target.value)} />
-                        <button className="btn btn-mini me-4"
-                                onClick={(e)=>editTodo(item.id)}>
-                                修改</button>
-                        <button className="btn btn-mini"
-                                onClick={(e)=>setEditMode('')}>
-                                取消</button>
-                        </>) : (<>{item.content}</>)}
-                    </label>
+                    { editMode === item.id ?
+                        (
+                        <div className="flex-grow-1">
+                            <input type="text"
+                                   className="todo-edit-input me-4"
+                                   value={editContent}
+                                   onChange={(e)=>setEditContent(e.target.value)} />
+                            <button className="btn btn-mini me-4"
+                                    onClick={(e)=>editTodo(item.id)}>
+                                    修改</button>
+                            <button className="btn btn-mini"
+                                    onClick={(e)=>setEditMode('')}>
+                                    取消</button>
+                        </div>
+                        ) : (
+                        <label htmlFor={item.id}
+                               className="flex-grow-1"
+                               style={{
+                               color: item.status && "#9F9A91",
+                               textDecoration: item.status && "line-through"
+                               }}>{item.content}
+                        </label>
+                        )
+                    }
                     <span className="btn-edit material-icons"
                           onClick={(e) => {
                           setEditMode(item.id);
